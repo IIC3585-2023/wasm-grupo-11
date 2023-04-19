@@ -27,6 +27,8 @@ void shuffle(int *array, size_t n) {
     }
 }
 
+/* Generates an approximation of the best poosible assignment 
+by assigning the next random job to the least used cluster. */
 void randomized_greedy_assignements(JobAssignment* assignments, int jobs_count, int clusters, int* jobs) {
 
     int* shuffled_jobs = malloc(sizeof(int) * jobs_count);
@@ -53,6 +55,8 @@ void randomized_greedy_assignements(JobAssignment* assignments, int jobs_count, 
     }
 }
 
+/* Runs a number of iterations of the greedy randomized approximation, and outputs
+the best one found. */
 int iterative_randomized_greedy_assignements(int jobs_count, int clusters, int* jobs) {
 
     int best_cost = INT_MAX;
@@ -93,6 +97,7 @@ int iterative_randomized_greedy_assignements(int jobs_count, int clusters, int* 
     return objective_value;
 }
 
+/* Brute-force approach, tries all combinations. */
 void assignJob(int currentJob, int maxJob, int* jobs, int* clusters, int clusterCount, int* globalMax, int** clusterJobs, int* clusterIndex, int* bestAssignment){
     if(currentJob == maxJob){
         int localMax = -1;
