@@ -1,0 +1,7 @@
+obj/*
+
+.vscode
+
+clusters
+
+!src/*
