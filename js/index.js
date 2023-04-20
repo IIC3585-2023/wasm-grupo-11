@@ -26,5 +26,8 @@ Module.onRuntimeInitialized = () => {
         [randomList.length, 2, ptr]
     )
 
+    // Lastly, free the allocated memory
+    Module._free(ptr)
+
     console.log(result)
 }
