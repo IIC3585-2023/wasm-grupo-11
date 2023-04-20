@@ -1,4 +1,4 @@
-const {jobs, clusters} = require('./input.json')
+const {jobs, clusters} = require('../input.json')
 
 /**
  * 

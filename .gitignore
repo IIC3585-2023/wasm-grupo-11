@@ -1,7 +1,4 @@
-obj/*
 
 .vscode
 
-clusters
-
-!src/*
+main
