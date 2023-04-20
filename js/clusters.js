@@ -1,4 +1,3 @@
-const {jobs, clusters} = require('../input.json')
 
 /**
  * 
@@ -81,4 +80,3 @@ const iterativeRandomizedGreedyAssignments = (jobs, clusters) => {
     return bestAssignments, bestCost
 }
 
-iterativeRandomizedGreedyAssignments(jobs, clusters)
