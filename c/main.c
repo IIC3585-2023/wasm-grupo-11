@@ -182,6 +182,35 @@ void assignJob(int currentJob, int maxJob, int* jobs, int* clusters, int cluster
     return;
 }
 
+int bruteForceAssignments(int jobCount, int clusterCount, int* jobs){
+
+    int currentJob = 0;
+    int maxJob = jobCount;
+
+    int* clusters = calloc(clusterCount, sizeof(int));
+
+    int** clusterJobs = malloc(sizeof(int*)*clusterCount);
+
+    for(int i = 0; i < clusterCount; i++){
+        clusterJobs[i] = malloc(sizeof(int)*jobCount);
+    }
+
+    int* clusterIndex = calloc(clusterCount, sizeof(int));
+    int* bestAssignment = calloc(jobCount, sizeof(int));
+
+    int globalMax = INT_MAX;
+
+    assignJob(currentJob, maxJob, jobs, clusters, clusterCount, &globalMax, clusterJobs, clusterIndex, bestAssignment);
+
+    free(clusterJobs);
+    free(clusterIndex);
+    // free(jobs);
+    free(bestAssignment);
+    free(clusters);
+
+    return globalMax;
+}
+
 int main() {
 
     srand(time(NULL));
@@ -211,7 +240,7 @@ int main() {
     int* clusterIndex = calloc(clusterCount, sizeof(int));
     int* bestAssignment = calloc(jobCount, sizeof(int));
 
-    assignJob(0, jobCount, jobs, clusterTime, clusterCount, &globalMax, clusterJobs, clusterIndex, bestAssignment);
+    // assignJob(0, jobCount, jobs, clusterTime, clusterCount, &globalMax, clusterJobs, clusterIndex, bestAssignment);
 
     for(int i = 0; i < jobCount; i++){
         printf("%i ", bestAssignment[i]);
@@ -225,9 +254,9 @@ int main() {
     }
     free(clusterJobs);
     free(clusterIndex);
-    free(jobs);
+    // free(jobs);
     free(bestAssignment);
     free(clusterTime);
-
+    free(jobs);
     return 0;
 }

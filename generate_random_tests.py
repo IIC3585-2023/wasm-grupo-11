@@ -17,4 +17,4 @@ with open('input.json', 'w') as json_file:
         "clusters": CLUSTERS,
         "jobs": jobs
     }
-    json_file.write(json.dumps(obj))
+    json_file.write(json.dumps(obj, indent=4))

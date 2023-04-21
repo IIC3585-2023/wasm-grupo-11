@@ -1384,6 +1384,8 @@ var _free = Module["_free"] = createExportWrapper("free");
 /** @type {function(...*):?} */
 var _iterative_randomized_greedy_assignements = Module["_iterative_randomized_greedy_assignements"] = createExportWrapper("iterative_randomized_greedy_assignements");
 /** @type {function(...*):?} */
+var _bruteForceAssignments = Module["_bruteForceAssignments"] = createExportWrapper("bruteForceAssignments");
+/** @type {function(...*):?} */
 var ___errno_location = createExportWrapper("__errno_location");
 /** @type {function(...*):?} */
 var _fflush = Module["_fflush"] = createExportWrapper("fflush");

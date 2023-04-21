@@ -77,6 +77,102 @@ const iterativeRandomizedGreedyAssignments = (jobs, clusters) => {
     console.log(`Best assignments:`)
     console.log(bestAssignments)
     console.log(`Cost: ${bestCost}`)
-    return bestAssignments, bestCost
+    return [bestAssignments, bestCost]
 }
 
+
+const bruteForceSolver = (currentJob, maxJob, jobs, clusters, clusterCount, 
+                                globalMax, clusterJobs, clusterIndex, bestAssignment) => {
+    if(currentJob == maxJob){
+        let localMax = -1
+        for(let i = 0; i < clusterCount; i++){
+            if(clusters[i] > localMax){
+                localMax = clusters[i];
+            }
+        }
+        if(localMax < globalMax && localMax > 0){
+            for(let i = 0; i < clusterCount; i++){
+                for(let j = 0; j < clusterIndex[i]; j++){
+                    bestAssignment[clusterJobs[i][j]] = i;
+                }
+            }
+            globalMax = localMax
+        }
+    }
+    else{
+        for(let i = 0; i < clusterCount; i++){
+            if(clusters[i] + jobs[currentJob] > globalMax) continue;
+            clusters[i] += jobs[currentJob]
+            let idx = clusterIndex[i]
+            clusterJobs[i][idx] = currentJob;
+            clusterIndex[i]++;
+            let [assignment, val] = bruteForceSolver(currentJob + 1, maxJob, jobs, clusters, clusterCount,
+                                  globalMax, clusterJobs, clusterIndex, bestAssignment);
+            if(val < globalMax){
+                globalMax = val;
+                bestAssignment = assignment
+            }
+            clusterJobs[i][idx] = -1;
+            clusterIndex[i]--;
+            clusters[i] -= jobs[currentJob]
+        }
+    }
+    return [bestAssignment, globalMax]
+}
+
+const bruteForceAssignments = (jobs, clusterCount) => {
+    const jobCount = jobs.length;
+    const clusters = new Array(clusterCount);
+
+    for(let i = 0; i < clusterCount; i++){
+        clusters[i] = 0;
+    }
+
+    const clusterJobs = [];
+
+    for(let i = 0; i < clusterCount; i++){
+        clusterJobs.push([]);
+        for(let j = 0; j < jobCount; j++){
+            clusterJobs[i].push(-1)
+        }
+    }
+
+    const clusterIndex = new Array(clusterCount);
+
+    for(let i = 0; i < clusterCount; i++){
+        clusterIndex[i] = 0;
+    }
+
+    const bestAssignment = new Array(jobCount);
+
+    let globalMax = 0x7fffffff;
+
+    const [assignment, cost] = bruteForceSolver(0, jobCount, jobs, clusters, clusterCount, globalMax, clusterJobs, clusterIndex, bestAssignment);
+
+    let retAssignment = [];
+    for(let i = 0; i < clusterCount; i++){
+        retAssignment.push([]);
+    }
+    costList = new Array(clusterCount);
+
+    for(let i = 0; i < clusterCount; i++){
+        costList[i] = 0;
+    }
+    retCost = cost
+
+    for(let i = 0; i < jobCount; i++){
+        retAssignment[assignment[i]].push(jobs[i]);
+        costList[assignment[i]] += jobs[i];
+    }
+
+    retList = []
+
+    for(let i = 0; i < clusterCount; i++){
+        retList.push({
+            "cost": costList[i],
+            "jobs": retAssignment[i]
+        })
+    }
+
+    return [retList, retCost]
+}
