@@ -58,6 +58,8 @@ const iterativeRandomizedGreedyAssignments = (jobs, clusters) => {
     let bestCost = 0x7fffffff
     let bestAssignments = undefined
 
+    const start = performance.now();
+
     for (i = 0; i < ITERATIONS; i++) {
         // Generate possible assignments
         assignments = randomizedGreedyAssignments(jobs, clusters)
@@ -74,10 +76,11 @@ const iterativeRandomizedGreedyAssignments = (jobs, clusters) => {
             bestAssignments = assignments
         }
     }
-    console.log(`Best assignments:`)
-    console.log(bestAssignments)
-    console.log(`Cost: ${bestCost}`)
-    return [bestAssignments, bestCost]
+    const end = performance.now();
+    // console.log(`Best assignments:`)
+    // console.log(bestAssignments)
+    // console.log(`Cost: ${bestCost}`)
+    return [bestAssignments, bestCost, end - start]
 }
 
 
@@ -147,7 +150,9 @@ const bruteForceAssignments = (jobs, clusterCount) => {
 
     let globalMax = 0x7fffffff;
 
+    const start = performance.now();
     const [assignment, cost] = bruteForceSolver(0, jobCount, jobs, clusters, clusterCount, globalMax, clusterJobs, clusterIndex, bestAssignment);
+    const end = performance.now();
 
     let retAssignment = [];
     for(let i = 0; i < clusterCount; i++){
@@ -174,5 +179,5 @@ const bruteForceAssignments = (jobs, clusterCount) => {
         })
     }
 
-    return [retList, retCost]
+    return [retList, retCost, end - start]
 }
