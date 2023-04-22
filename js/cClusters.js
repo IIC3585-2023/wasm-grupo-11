@@ -1365,6 +1365,7 @@ function dbg(text) {
       ret = onDone(ret);
       return ret;
     }
+
 function checkIncomingModuleAPI() {
   ignoredModuleProp('fetchSettings');
 }
@@ -1428,6 +1429,7 @@ var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
 // === Auto-generated postamble setup entry stuff ===
 
 Module["ccall"] = ccall;
+Module["getValue"] = getValue;
 var missingLibrarySymbols = [
   'zeroMemory',
   'exitJS',
@@ -1657,7 +1659,6 @@ var unexportedSymbols = [
   'freeTableIndexes',
   'functionsInTableMap',
   'setValue',
-  'getValue',
   'PATH',
   'PATH_FS',
   'UTF8Decoder',

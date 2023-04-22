@@ -182,7 +182,7 @@ void assignJob(int currentJob, int maxJob, int* jobs, int* clusters, int cluster
     return;
 }
 
-int bruteForceAssignments(int jobCount, int clusterCount, int* jobs){
+int bruteForceAssignments(int jobCount, int clusterCount, int* jobs, int* bestAssignment){
 
     int currentJob = 0;
     int maxJob = jobCount;
@@ -196,7 +196,7 @@ int bruteForceAssignments(int jobCount, int clusterCount, int* jobs){
     }
 
     int* clusterIndex = calloc(clusterCount, sizeof(int));
-    int* bestAssignment = calloc(jobCount, sizeof(int));
+    // int* bestAssignment = calloc(jobCount, sizeof(int));
 
     int globalMax = INT_MAX;
 
@@ -205,9 +205,12 @@ int bruteForceAssignments(int jobCount, int clusterCount, int* jobs){
     free(clusterJobs);
     free(clusterIndex);
     // free(jobs);
-    free(bestAssignment);
+    // free(bestAssignment);
     free(clusters);
-
+    for(int i = 0; i < jobCount; i++){
+        printf("C: %d\n", bestAssignment[i]);
+    }
+    printf("%d\n", globalMax);
     return globalMax;
 }
 
@@ -215,48 +218,51 @@ int main() {
 
     srand(time(NULL));
 
-    const int jobCount = 22;
-    const int clusterCount = 3;
+    const int jobCount = 30;
+    const int clusterCount = 2;
     int* jobs = malloc(sizeof(int)*jobCount);
 
     for(int i = 0; i < jobCount; i++){
         jobs[i] = rand() % 1000;
     }
 
-    // Iterative Randomized Approximation Method
-    int result = iterative_randomized_greedy_assignements(jobCount, clusterCount, jobs);
-    printf("Iterative Randomized solution: %d\n", result);
-
-    // Brute-force method
-    int globalMax = INT_MAX;
-    int* clusterTime = calloc(clusterCount, sizeof(int));
-
-    int** clusterJobs = malloc(sizeof(int*)*clusterCount);
-
-    for(int i = 0; i < clusterCount; i++){
-        clusterJobs[i] = malloc(sizeof(int)*jobCount);
-    }
-
-    int* clusterIndex = calloc(clusterCount, sizeof(int));
     int* bestAssignment = calloc(jobCount, sizeof(int));
+    // free(bestAssignment)
+    bruteForceAssignments(jobCount, clusterCount, jobs, bestAssignment);
+    // // Iterative Randomized Approximation Method
+    // int result = iterative_randomized_greedy_assignements(jobCount, clusterCount, jobs);
+    // printf("Iterative Randomized solution: %d\n", result);
 
-    // assignJob(0, jobCount, jobs, clusterTime, clusterCount, &globalMax, clusterJobs, clusterIndex, bestAssignment);
+    // // Brute-force method
+    // int globalMax = INT_MAX;
+    // int* clusterTime = calloc(clusterCount, sizeof(int));
 
-    for(int i = 0; i < jobCount; i++){
-        printf("%i ", bestAssignment[i]);
-    }
-    printf("\n");
-    printf("%i\n", globalMax);
+    // int** clusterJobs = malloc(sizeof(int*)*clusterCount);
 
-    // Free memory
-    for(int i = 0; i < clusterCount; i++){
-        free(clusterJobs[i]);
-    }
-    free(clusterJobs);
-    free(clusterIndex);
-    // free(jobs);
+    // for(int i = 0; i < clusterCount; i++){
+    //     clusterJobs[i] = malloc(sizeof(int)*jobCount);
+    // }
+
+    // int* clusterIndex = calloc(clusterCount, sizeof(int));
+    // int* bestAssignment = calloc(jobCount, sizeof(int));
+
+    // // assignJob(0, jobCount, jobs, clusterTime, clusterCount, &globalMax, clusterJobs, clusterIndex, bestAssignment);
+
+    // for(int i = 0; i < jobCount; i++){
+    //     printf("%i ", bestAssignment[i]);
+    // }
+    // printf("\n");
+    // printf("%i\n", globalMax);
+
+    // // Free memory
+    // for(int i = 0; i < clusterCount; i++){
+    //     free(clusterJobs[i]);
+    // }
+    // free(clusterJobs);
+    // free(clusterIndex);
+    // // free(jobs);
     free(bestAssignment);
-    free(clusterTime);
+    // free(clusterTime);
     free(jobs);
     return 0;
 }
