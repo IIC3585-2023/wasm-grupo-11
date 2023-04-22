@@ -1383,6 +1383,8 @@ var _malloc = Module["_malloc"] = createExportWrapper("malloc");
 /** @type {function(...*):?} */
 var _free = Module["_free"] = createExportWrapper("free");
 /** @type {function(...*):?} */
+var _job_assignment_to_int_array = Module["_job_assignment_to_int_array"] = createExportWrapper("job_assignment_to_int_array");
+/** @type {function(...*):?} */
 var _iterative_randomized_greedy_assignements = Module["_iterative_randomized_greedy_assignements"] = createExportWrapper("iterative_randomized_greedy_assignements");
 /** @type {function(...*):?} */
 var _bruteForceAssignments = Module["_bruteForceAssignments"] = createExportWrapper("bruteForceAssignments");
