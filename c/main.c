@@ -59,12 +59,6 @@ void destroy_assignments(JobAssignment* assignments, int cluster_count) {
 /* Auxiliary function to shuffle an array.
 Obtained from https://stackoverflow.com/questions/6127503/shuffle-array-in-c*/
 void shuffle(int *array, size_t n) {    
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    int usec = tv.tv_usec;
-    srand48(usec);
-
-
     if (n > 1) {
         size_t i;
         for (i = n - 1; i > 0; i--) {
@@ -132,7 +126,11 @@ int* job_assignment_to_int_array(JobAssignment* assignments, int jobs_count, int
 /* Runs a number of iterations of the greedy randomized approximation, and outputs
 the best one found. */
 JobAssignment* iterative_randomized_greedy_assignements(int jobs_count, int clusters, int* jobs) {
-
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    int usec = tv.tv_usec;
+    srand48(usec);
+    
     int best_cost = INT_MAX;
     JobAssignment* best_assignments = NULL;
     

@@ -5,7 +5,15 @@
 </head>
 
 <body>
+    <h2>Enter a JSON instance</h2>
     <input type="file" id="jobInput">
+
+    <h2>Generate a random instance</h2>
+    <p>Clusters: <input type="number" id="clustersInput"></input></p>
+    <p>Jobs: <input type="number" id="jobCountInput"></input></p>
+    <button id="generateRandomInstanceButton">Generate</button>
+    
+    <h2>Choose an algorithm to run</h2>
     <button id="runIterativeC">Run IterativeC</button>
     <button id="runBruteC">Run BruteC</button>
     <button id="runIterativeJS">Run IterativeJS</button>
