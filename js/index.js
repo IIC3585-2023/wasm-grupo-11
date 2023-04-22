@@ -41,17 +41,15 @@ const bestAssignmentToDict = (bestValue, assignment, clusterCount, jobCount, job
 const bruteForceAssignmentsC = (array, clusterCount) => {
     const list = Int32Array.from(array);
     const bestAssignment = Int32Array.from(new Array(array.length));
-    // the iterative_randomized_greedy_assignements needs an array of ints as an argument,
+    // the bruteForceAssignments needs arrays of ints as arguments,
     // so we allocate that before the function call
     const ptr = Module._malloc(list.byteLength);
-
     const assignmentPtr = Module._malloc(bestAssignment.byteLength);
 
     // Divide ptr by 4 (or shift-right by 2), because why???
     // I think it is because ptr considers an array of bytes, but we need
     // it to consider an array of int, which are 4-bytes long
     Module.HEAP32.set(list, ptr >> 2);
-
     Module.HEAP32.set(bestAssignment, assignmentPtr >> 2);
 
     const result = Module.ccall("bruteForceAssignments",
@@ -129,6 +127,9 @@ const iterativeRandomizedGreedyAssignmentsC = (array, clusters) => {
             arrayOffset += 1;
         }
     }
+    // Before returning, we free the allocated memory.
+    Module._free(result);
+    Module._free(intArray);
     return [assignments, maxCost]
 }
 

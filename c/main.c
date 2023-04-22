@@ -104,6 +104,14 @@ void randomized_greedy_assignements(JobAssignment* assignments, int jobs_count, 
     }
 }
 
+/* Auxiliary function to transform an array of assignments to an int array.
+Needed to read the assignments from JS.
+The array has the following format:
+- First, the cost of the first cluster.
+- Then, the amount of jobs assigned to that cluster.
+- Then, the ID of each job assigned to that cluster.
+The previous format is then repeated for each cluster.
+*/
 int* job_assignment_to_int_array(JobAssignment* assignments, int jobs_count, int clusters) {
     int* array = malloc(sizeof(int) * (jobs_count + 2 * clusters));
     int array_idx = 0;
