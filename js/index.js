@@ -71,14 +71,14 @@ const bruteForceAssignmentsC = (array, clusterCount) => {
     const start = performance.now();
     const result = Module.ccall("bruteForceAssignments",
         'number',
-        ['number', 'number', 'number'],
+        ['number', 'number', 'number', 'number'],
         [list.length, clusterCount, ptr, assignmentPtr]
     );
     const end = performance.now();
 
     let assignment = []
     for(let i = 0; i < array.length; i++){
-        assignment.push(Module.getValue(assignmentPtr + 4*i, "i16"));
+        assignment.push(Module.getValue(assignmentPtr + 4*i, "i32"));
     }
     Module._free(ptr);
     Module._free(assignmentPtr);
