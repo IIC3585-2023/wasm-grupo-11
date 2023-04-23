@@ -155,7 +155,6 @@ const iterativeRandomizedGreedyAssignmentsC = (array, clusters) => {
 }
 
 Module.onRuntimeInitialized = () => {
-    console.log("hello")
     const runIterativeJS = document.getElementById("runIterativeJS");
     runIterativeJS.addEventListener("click", () => 
         callSolver(instance.jobs, instance.clusters, iterativeRandomizedGreedyAssignments, "iterative-js-time"));
