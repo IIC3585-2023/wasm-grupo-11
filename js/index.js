@@ -6,6 +6,10 @@ let instance = {
 const generateRandomInstance = () => {
     const clusterInput = document.getElementById("clustersInput").value;
     const jobCountInput = document.getElementById("jobCountInput").value;
+    document.getElementById("iterative-js-time").innerHTML = '-';
+    document.getElementById("iterative-c-time").innerHTML = '-';
+    document.getElementById("brute-js-time").innerHTML = '-';
+    document.getElementById("brute-c-time").innerHTML = '-';
     console.log(jobCountInput)
     
     let newInstance = {
