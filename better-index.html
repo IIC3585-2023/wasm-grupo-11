@@ -8,33 +8,36 @@
 </head>
 
 <body>
-    <br class="space-between-boxes">
-    <div id="enter-file" class="parent-box">
-        <h2>Enter a JSON instance</h2>
-        <input type="file" id="jobInput" class="time-container">
-        <!-- <div class="time-container">
-        </div> -->
-        <label for="file-upload" class="custom-file-upload" id="upload-container">
-            <i class="fas fa-file" style="color:white"></i> Upload File
-        </label>
-        <input id="file-upload" type="file"/>
-    </div>
-    <br class="space-between-boxes">
-
-    <div id="generate-instance" class="parent-box">
-        <h2>Generate a random instance</h2>
-        <div>
-            <label class="instantiate-label">Clusters</label>
-            <input type="number" min="1" value="2" id="clustersInput" class="instantiate-input">
-            <br>
-
-            <label class="instantiate-label">Jobs</label>
-            <input type="number" min="1" value="10" id="jobCountInput" class="instantiate-input">
-            <br>
-
-            <button id="generateRandomInstanceButton">Generate</button>    
+    <!-- <br class="space-between-boxes"> -->
+    <div id="both-instance-container">
+        <div id="enter-file" class="parent-box">
+            <h2>Enter a JSON instance</h2>
+            <input type="file" id="jobInput" class="time-container">
+            <label for="file-upload" class="custom-file-upload" id="upload-container">
+                <i class="fas fa-file" style="color:white"></i> Upload File
+            </label>
+            <input id="file-upload" type="file"/>
+        </div>
+        <!-- <br> -->
+        <!-- <br> -->
+        <!-- <br class="space-between-boxes"> -->
+    
+        <div id="generate-instance" class="parent-box">
+            <h2>Generate a random instance</h2>
+            <div>
+                <label class="instantiate-label">Clusters</label>
+                <input type="number" min="1" value="2" id="clustersInput" class="instantiate-input">
+                <br>
+    
+                <label class="instantiate-label">Jobs</label>
+                <input type="number" min="1" value="10" id="jobCountInput" class="instantiate-input">
+                <br>
+    
+                <button id="generateRandomInstanceButton">Generate</button>    
+            </div>
         </div>
     </div>
+
     <br class="space-between-boxes">
 
     <div id="run-algorithm" class="parent-box">
