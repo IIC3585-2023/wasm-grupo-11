@@ -96,6 +96,7 @@ void randomized_greedy_assignements(JobAssignment* assignments, int jobs_count, 
         // Assign job to the least used cluster
         assign_job(&assignments[least_used_cluster_idx], jobs[current_job_idx], current_job_idx);
     }
+    free(shuffled_jobs);
 }
 
 /* Auxiliary function to transform an array of assignments to an int array.
@@ -243,8 +244,8 @@ int main() {
 
     srand(time(NULL));
 
-    const int jobCount = 33;
-    const int clusterCount = 2;
+    const int jobCount = 33000;
+    const int clusterCount = 10;
     int* jobs = malloc(sizeof(int)*jobCount);
 
     for(int i = 0; i < jobCount; i++){
@@ -288,6 +289,7 @@ int main() {
     // // free(jobs);
     // free(bestAssignment);
     // free(clusterTime);
+    destroy_assignments(result, clusterCount);
     free(jobs);
     return 0;
 }
