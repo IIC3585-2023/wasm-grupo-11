@@ -11,9 +11,11 @@
     <br class="space-between-boxes">
     <div id="enter-file" class="parent-box">
         <h2>Enter a JSON instance</h2>
-        <input type="file" id="jobInput">
-        <label for="file-upload" class="custom-file-upload">
-            <i class="fas fa-file"></i> Upload File
+        <input type="file" id="jobInput" class="time-container">
+        <!-- <div class="time-container">
+        </div> -->
+        <label for="file-upload" class="custom-file-upload" id="upload-container">
+            <i class="fas fa-file" style="color:white"></i> Upload File
         </label>
         <input id="file-upload" type="file"/>
     </div>
@@ -22,12 +24,12 @@
     <div id="generate-instance" class="parent-box">
         <h2>Generate a random instance</h2>
         <div>
-            <label>Clusters</label>
-            <input type="number" min="1" value="2" id="clustersInput">
+            <label class="instantiate-label">Clusters</label>
+            <input type="number" min="1" value="2" id="clustersInput" class="instantiate-input">
             <br>
 
-            <label>Jobs</label>
-            <input type="number" min="1" value="10" id="jobCountInput">
+            <label class="instantiate-label">Jobs</label>
+            <input type="number" min="1" value="10" id="jobCountInput" class="instantiate-input">
             <br>
 
             <button id="generateRandomInstanceButton">Generate</button>    
@@ -59,7 +61,9 @@
         
         <div>
         <button id="runAll" class="run-button">Run All</button>
-            <p id="all-time" class="time-container"> - </p>
+            <p id="all-time" class="time-container"> 
+                -
+            </p>
         </div>
 
         <script src="js/cClusters.js"></script>

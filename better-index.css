@@ -22,7 +22,7 @@ div {
     /* width: max-content; set width to the widest content */
     /* text-align: center; center the child elements horizontally */
     padding: 25px; /* add some padding around the child elements */
-    padding-bottom: 15px;
+    padding-bottom: 5px;
     padding-top: 15px;
 }
 
@@ -111,19 +111,19 @@ form {
   margin: 0 auto;
 }
 
-label,
-input {
+label.instantiate-label,
+input.instantiate-input {
   /* In order to define widths */
   display: inline-block;
 }
 
-label {
+label.instantiate-label {
   width: 30%;
   /* Positions the label text beside the input */
   text-align: right;
 }
 
-label+input {
+label.instantiate-label+input.instantiate-input {
   width: 50%;
   /* Large margin-right to force the next element to the new-line
            and margin-left to create a gutter between the label and input */
@@ -161,4 +161,14 @@ input+input {
 .run-button {
   width: 180px;
   text-align: center;
+}
+
+#upload-container { 
+  border-style: solid;
+  border-width: 7px;
+  border-radius: 25px;
+  border-color: #17646c;
+  background-color: #1f818c;
+  color: #ededed;
+  padding: 20px;
 }
