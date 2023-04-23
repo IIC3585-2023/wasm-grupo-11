@@ -155,29 +155,52 @@ const iterativeRandomizedGreedyAssignmentsC = (array, clusters) => {
 }
 
 Module.onRuntimeInitialized = () => {
+    console.log("hello")
     const runIterativeJS = document.getElementById("runIterativeJS");
-    runIterativeJS.addEventListener("click", () => callSolver(instance.jobs, instance.clusters, iterativeRandomizedGreedyAssignments));
+    runIterativeJS.addEventListener("click", () => 
+        callSolver(instance.jobs, instance.clusters, iterativeRandomizedGreedyAssignments, "iterative-js-time"));
     const runIterativeC = document.getElementById("runIterativeC");
-    runIterativeC.addEventListener("click", () => callSolver(instance.jobs, instance.clusters, iterativeRandomizedGreedyAssignmentsC));
+    runIterativeC.addEventListener("click", () => 
+        callSolver(instance.jobs, instance.clusters, iterativeRandomizedGreedyAssignmentsC, "iterative-c-time"));
     const runBruteJS = document.getElementById("runBruteJS");
-    runBruteJS.addEventListener("click", () => callSolver(instance.jobs, instance.clusters, bruteForceAssignments));
+    runBruteJS.addEventListener("click", () => 
+        callSolver(instance.jobs, instance.clusters, bruteForceAssignments, "brute-js-time"));
     const runBruteC = document.getElementById("runBruteC");
-    runBruteC.addEventListener("click", () => callSolver(instance.jobs, instance.clusters, bruteForceAssignmentsC));
+    runBruteC.addEventListener("click", () => 
+        callSolver(instance.jobs, instance.clusters, bruteForceAssignmentsC, "brute-c-time"));
+
+    
+    const runAll = document.getElementById("runAll");
+    runAll.addEventListener("click", () => {
+        document.getElementById("iterative-js-time").innerHTML = '<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>';
+        document.getElementById("iterative-c-time").innerHTML = '<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>';
+        document.getElementById("brute-js-time").innerHTML = '<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>';
+        document.getElementById("brute-c-time").innerHTML = '<i class="fa fa-refresh fa-spin" style="font-size:24px"></i>';
+        callSolver(instance.jobs, instance.clusters, iterativeRandomizedGreedyAssignmentsC, "iterative-c-time");
+        callSolver(instance.jobs, instance.clusters, bruteForceAssignments, "brute-js-time");
+        callSolver(instance.jobs, instance.clusters, iterativeRandomizedGreedyAssignments, "iterative-js-time");
+        callSolver(instance.jobs, instance.clusters, bruteForceAssignmentsC, "brute-c-time");
+    });
 
     document.getElementById("jobInput").addEventListener('change', (e) => getInput(e));
 
     document.getElementById("generateRandomInstanceButton").addEventListener("click", generateRandomInstance)
 }
 
-const callSolver = (jobs, clusters, solver) => {
-    const [bestAssignments, bestCost, time] = solver(jobs, clusters);
-    const result = {
-        "cost": bestCost,
-        "clusters": bestAssignments
-    }
-    console.log(result)
-    console.log(`Solver took time ${time.toFixed(3)} ms.`)
-    download("result.json", JSON.stringify(result, null, 2))
+const callSolver = (jobs, clusters, solver, elementId) => {
+    const elem = document.getElementById(elementId);
+    elem.innerHTML= '<i class="fa fa-refresh fa-spin" style="font-size:24px;color: white"></i>';
+    setTimeout(function() {
+        const [bestAssignments, bestCost, time] = solver(jobs, clusters);
+        const result = {
+            "cost": bestCost,
+            "clusters": bestAssignments
+        }
+        console.log(result)
+        console.log(`Solver took time ${time.toFixed(3)} ms.`)
+        document.getElementById(elementId).innerHTML = time.toFixed(3)+" ms.";
+        // download("result.json", JSON.stringify(result, null, 2))
+    }, 0);
 }
 
 const getInput = async (event) => {

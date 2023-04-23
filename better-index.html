@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="better-index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <br class="space-between-boxes">
+    <div id="enter-file" class="parent-box">
+        <h2>Enter a JSON instance</h2>
+        <input type="file" id="jobInput">
+        <label for="file-upload" class="custom-file-upload">
+            <i class="fas fa-file"></i> Upload File
+        </label>
+        <input id="file-upload" type="file"/>
+    </div>
+    <br class="space-between-boxes">
+
+    <div id="generate-instance" class="parent-box">
+        <h2>Generate a random instance</h2>
+        <div>
+            <label>Clusters</label>
+            <input type="number" min="1" value="2" id="clustersInput">
+            <br>
+
+            <label>Jobs</label>
+            <input type="number" min="1" value="10" id="jobCountInput">
+            <br>
+
+            <button id="generateRandomInstanceButton">Generate</button>    
+        </div>
+    </div>
+    <br class="space-between-boxes">
+
+    <div id="run-algorithm" class="parent-box">
+        <h2>Choose an algorithm to run</h2>
+        <div>
+            <button  id="runIterativeC" class="run-button">Run IterativeC</button>
+            <p id="iterative-c-time" class="time-container">-</p>
+        </div>
+
+        <div>
+        <button id="runBruteC" class="run-button">Run BruteC</button>
+            <p id="brute-c-time" class="time-container">-</p>
+        </div>
+        
+        <div>
+        <button id="runIterativeJS" class="run-button">Run IterativeJS</button>
+            <p id="iterative-js-time" class="time-container">-</p>
+        </div>
+        
+        <div>
+        <button id="runBruteJS" class="run-button">Run BruteJS</button>
+            <p id="brute-js-time" class="time-container">-</p>
+        </div>
+        
+        <div>
+        <button id="runAll" class="run-button">Run All</button>
+            <p id="all-time" class="time-container"> - </p>
+        </div>
+
+        <script src="js/cClusters.js"></script>
+        <script src="js/clusters.js"></script>
+        <script src="js/index.js"></script>
+    </div>
+</body>
+
+</html>
