@@ -208,6 +208,7 @@ const callSolver = (jobs, clusters, solver, elementId) => {
 }
 
 const getInput = async (event) => {
+    console.log("yes")
     const file = event.target.files[0];
     const res = await file.text();
     const json = JSON.parse(res);
