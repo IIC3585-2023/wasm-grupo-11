@@ -149,6 +149,7 @@ const iterativeRandomizedGreedyAssignmentsC = (array, clusters) => {
         }
     }
     // Before returning, we free the allocated memory.
+    Module._free(ptr);
     Module._free(result);
     Module._free(intArray);
     return [assignments, maxCost, end - start]
