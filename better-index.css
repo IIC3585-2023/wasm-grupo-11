@@ -2,6 +2,10 @@ body {
     background-color: #ededed;
 }
 
+h2 {
+  font-size: 30px;
+}
+
 br.space-between-boxes{
     content: " " !important;
     display: block !important;
@@ -52,6 +56,8 @@ button {
   letter-spacing: .8px;
   line-height: 20px;
   margin: 10px;
+  margin-left:0px;
+  margin-right: 0px;
   outline: none;
   overflow: visible;
   padding: 13px 16px;
@@ -116,7 +122,7 @@ label.instantiate-label+input.instantiate-input {
   width: 50%;
   /* Large margin-right to force the next element to the new-line
            and margin-left to create a gutter between the label and input */
-  margin: 0 00% 0 4%;
+  margin: 0 0% 0 4%;
 }
 
 
